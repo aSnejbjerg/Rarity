@@ -424,7 +424,10 @@ local shadowlandsMounts = {
 			mode = CONSTANTS.DEFEAT_DETECTION.MODE_AND,
 			{
 				encounterName = "So'leah",
-				instanceDifficulties = { [CONSTANTS.INSTANCE_DIFFICULTIES.HEROIC_DUNGEON] = true, [CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_DUNGEON] = true },
+				instanceDifficulties = {
+					[CONSTANTS.INSTANCE_DIFFICULTIES.HEROIC_DUNGEON] = true,
+					[CONSTANTS.INSTANCE_DIFFICULTIES.MYTHIC_DUNGEON] = true
+				},
 			},
 		},
 		coords = { { m = CONSTANTS.UIMAPIDS.TAZAVESH_THE_VEILED_MARKET, i = true } },
