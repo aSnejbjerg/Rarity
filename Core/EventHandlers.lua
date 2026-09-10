@@ -93,6 +93,10 @@ function EventHandlers:Register()
 	self:RegisterEvent("GOSSIP_SHOW", "OnGossipShow")
 	self:RegisterEvent("GOSSIP_CLOSED", "OnGossipClosed")
 
+	-- Used for Ritual Site (Broken Lynx Leash) entry/exit detection via UiMapID; see OnRitualSiteZoneChanged
+	self:RegisterEvent("ZONE_CHANGED_NEW_AREA", "OnRitualSiteZoneChanged")
+	self:RegisterEvent("PLAYER_ENTERING_WORLD", "OnRitualSiteZoneChanged")
+
 	if LE_EXPANSION_LEVEL_CURRENT >= LE_EXPANSION_MISTS_OF_PANDARIA then
 		self:RegisterEvent("SHOW_LOOT_TOAST", "OnShowLootToast")
 	end
@@ -571,6 +575,29 @@ function R:OnGossipClosed()
 	isHauntedBrazierGossipOpen = false
 end
 -- Ral'kala shenanigans end here --
+
+-- Void-Corrupted Lynx start here --
+
+local RITUAL_SITE_MAP_ID = CONSTANTS.UIMAPIDS.RITUAL_SITES_MIDNIGHT
+local wasInRitualSite = false
+
+local function checkRitualSiteState(self)
+	local isInRitualSite = GetBestMapForUnit("player") == RITUAL_SITE_MAP_ID
+
+	if isInRitualSite and not wasInRitualSite then
+		self:Debug("Entered a Ritual Site instance")
+	elseif not isInRitualSite and wasInRitualSite then
+		self:Debug("Left the Ritual Site instance - adding attempt for Broken Lynx Leash")
+		addAttemptForItem("Broken Lynx Leash", "mounts")
+	end
+
+	wasInRitualSite = isInRitualSite
+end
+
+function R:OnRitualSiteZoneChanged(event)
+	checkRitualSiteState(self)
+end
+-- Void-Corrupted Lynx ends here (╯°□°）╯︵ ┻━┻ --
 
 local worldEventQuests = {
 	[52196] = "Slightly Damp Pile of Fur", -- Dunegorger Kraulok (TODO: Use encounter also?)
