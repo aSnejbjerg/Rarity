@@ -381,7 +381,7 @@ local midnightMounts = {
 		itemId = 272392,
 		spellId = 1287359,
 		chance = 300,
-		sourceText = L["This item drops from the final cache in either Ritual Site, and is required to craft the Void-Corrupted Lynx Mount. It is not possible to automatically add attempts, so please do so manually!"],
+		sourceText = L["This item drops from the final cache in either Ritual Site, and is required to craft the Void-Corrupted Lynx Mount."],
 		coords = { { m = CONSTANTS.UIMAPIDS.RITUAL_SITES_MIDNIGHT } },
 	},
 	["Arcanovoid Construct"] = {
