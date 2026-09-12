@@ -584,7 +584,6 @@ end
 -- this therefore adds attempt when the player enters the ritual zone and doesn't leave within a minute --
 -- reason for the minute "cooldown" is sometimes players could forget to set tier / challenges correctly etc. --
 
-
 local RITUAL_SITE_MAP_ID = CONSTANTS.UIMAPIDS.RITUAL_SITES_MIDNIGHT
 local RITUAL_SITE_MIN_ATTEMPT_DURATION = 60
 local wasInRitualSite = false
